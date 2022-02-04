@@ -9,7 +9,7 @@ const Projects = () => {
     useEffect(async () => {
         let { data: project, error } = await supabase
         .from('project')
-        .select('id, created_at, name')
+        .select('*')
         setProjects(project)
     }, [])
 

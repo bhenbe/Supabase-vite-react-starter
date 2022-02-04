@@ -1,5 +1,6 @@
 import { createClient } from '@supabase/supabase-js'
 import { Provider }     from 'react-supabase'
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import RegisterForm     from './components/RegisterForm'
 import LoginForm        from './components/LoginForm'
 import Projects         from './components/Projects'
@@ -11,7 +12,13 @@ const supabase = createClient(supabaseUrl, supabaseKey)
 function App() {
   return (
     <Provider value={supabase}>
-      <LoginForm />
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<LoginForm />}></Route>
+          <Route path="/register" element={<RegisterForm />}></Route>
+          <Route path="/projects" element={<Projects />}></Route>
+        </Routes>
+      </BrowserRouter>
     </Provider>
   )
 }
