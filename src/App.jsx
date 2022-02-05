@@ -4,6 +4,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import RegisterForm     from './components/RegisterForm'
 import LoginForm        from './components/LoginForm'
 import Projects         from './components/Projects'
+import LogOut           from './components/LogOut'
 
 const supabaseUrl = import.meta.env.VITE_SUPABASE_URL
 const supabaseKey = import.meta.env.VITE_SUPABASE_KEY
@@ -17,6 +18,7 @@ function App() {
           <Route path="/" element={<LoginForm />}></Route>
           <Route path="/register" element={<RegisterForm />}></Route>
           <Route path="/projects" element={<Projects />}></Route>
+          <Route path="/disconnect" element={<LogOut />}></Route>
         </Routes>
       </BrowserRouter>
     </Provider>

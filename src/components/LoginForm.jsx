@@ -47,7 +47,7 @@ const LoginForm = () => {
                     <label htmlFor="login-password">Mot de passe </label>
                     <input type="password" name="login-password" className="block w-full py-2 px-3 text-gray-700 mb-3 leading-tight rounded border bg-white" value={password} onChange={(e) => setPassword(e.target.value)} />
                 </fieldset>
-                <button type="submit" className="block w-full rounded py-2 px-3 bg-blue-600 text-white disabled:bg-slate-600" disabled={!validateForm()}>M'identifier</button>
+                <button type="submit" className="block w-full text-center rounded py-2 px-3 bg-blue-600 text-white disabled:bg-slate-600" disabled={!validateForm()}>M'identifier</button>
             </form>
         </div>
     )

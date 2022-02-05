@@ -38,14 +38,14 @@ const LoginForm = () => {
             }
             <form onSubmit={handleSubmit}>
                 <fieldset className="flex flex-col">
-                    <label htmlFor="login-email">Adresse e-mail</label>
-                    <input type="email" name="login-email" className="block w-full py-2 px-3 text-gray-700 mb-3 leading-tight rounded border bg-white" value={email} onChange={(e) => setEmail(e.target.value)} />
+                    <label htmlFor="register-email">Adresse e-mail</label>
+                    <input type="email" name="register-email" className="block w-full py-2 px-3 text-gray-700 mb-3 leading-tight rounded border bg-white" autoComplete="false" value={email} onChange={(e) => setEmail(e.target.value)} />
                 </fieldset>
                 <fieldset className="flex flex-col">
-                    <label htmlFor="login-password">Mot de passe </label>
-                    <input type="password" name="login-password" className="block w-full py-2 px-3 text-gray-700 mb-3 leading-tight rounded border bg-white" value={password} onChange={(e) => setPassword(e.target.value)} />
+                    <label htmlFor="register-password">Mot de passe </label>
+                    <input type="password" name="register-password" className="block w-full py-2 px-3 text-gray-700 mb-3 leading-tight rounded border bg-white" autoComplete="false" value={password} onChange={(e) => setPassword(e.target.value)} />
                 </fieldset>
-                <button type="submit" className="block w-full rounded py-2 px-3 bg-blue-600 text-white disabled:bg-slate-600" disabled={!validateForm()}>Créer mon compte</button>
+                <button type="submit" className="block w-full text-center rounded py-2 px-3 bg-blue-600 text-white disabled:bg-slate-600" disabled={!validateForm()}>Créer mon compte</button>
             </form>
         </div>
     )
