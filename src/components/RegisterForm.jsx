@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useSignUp } from 'react-supabase'
 //https://react-supabase.vercel.app/documentation/auth/use-signup
+import Alert from './atoms/Alert'
 
 const LoginForm = () => {
     const [email, setEmail] = useState("");
@@ -21,20 +22,20 @@ const LoginForm = () => {
 
     if (fetching) return (
         <div className="max-w-md my-8 mx-auto p-4 rounded shadow-lg">
-            <div className="block w-full py-2 px-3 mb-4 text-blue-700 rounded border border-blue-200 bg-blue-100">Création de compte en cours</div>
+            <Alert type="info">Création de compte en cours</Alert>
         </div>
     )
 
     if (user) return (
         <div className="max-w-md my-8 mx-auto p-4 rounded shadow-lg">
-            <div className="block w-full py-2 px-3 mb-4 text-green-700 rounded border border-green-200 bg-green-100">Votre compte a bien été créé !</div>
+            <Alert type="success">Votre compte a bien été créé !</Alert>
         </div>
     )
 
     return (
         <div className="max-w-md my-8 mx-auto p-4 rounded shadow-lg">
             {!!error  &&
-                <div className="block w-full py-2 px-3 mb-4 text-red-700 rounded border border-red-200 bg-red-100">Les informations fournies sont incorrectes</div>
+                <Alert type="error">Les informations fournies sont incorrectes</Alert>
             }
             <form onSubmit={handleSubmit}>
                 <fieldset className="flex flex-col">

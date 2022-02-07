@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react'
 import { useClient } from 'react-supabase'
 import moment from 'moment'
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom'
+import Alert from './atoms/Alert'
 
 const Projects = () => {
     const supabase = useClient()
@@ -19,7 +20,7 @@ const Projects = () => {
 
     if (!!!user?.id) return (
         <div className="max-w-md my-8 mx-auto p-4 rounded shadow-lg">
-            <div className="block w-full py-2 px-3 mb-4 text-red-700 rounded border border-red-200 bg-red-100">Vous devez vous identifier</div>
+            <Alert type="error">Vous devez vous identifier</Alert>
             <Link to="/" className="block w-full text-center rounded py-2 px-3 bg-blue-600 text-white disabled:bg-slate-600">Retour à l'accueil</Link>
         </div>
     )
