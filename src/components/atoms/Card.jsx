@@ -16,6 +16,6 @@ const Card = (props) => {
 
 Card.defaultProps = {
     size: 'md'
-};
+}
 
 export default Card

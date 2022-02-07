@@ -16,6 +16,6 @@ const Alert = (props) => {
 
 Alert.defaultProps = {
     type: 'info'
-};
+}
 
 export default Alert
