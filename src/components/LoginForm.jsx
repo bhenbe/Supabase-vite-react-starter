@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { useSignIn } from 'react-supabase'
 //https://react-supabase.vercel.app/documentation/auth/use-signin
 import { Link } from 'react-router-dom'
+import Card from './atoms/Card'
 import Alert from './atoms/Alert'
 
 const LoginForm = () => {
@@ -22,20 +23,20 @@ const LoginForm = () => {
     }
 
     if (fetching) return (
-        <div className="max-w-md my-8 mx-auto p-4 rounded shadow-lg">
+        <Card size="md">
             <Alert type="info">Connexion en cours</Alert>
-        </div>
+        </Card>
     )
 
     if (user) return (
-        <div className="max-w-md my-8 mx-auto p-4 rounded shadow-lg">
+        <Card size="md">
             <Alert type="success">Connecté !</Alert>
             <Link to="projects" className="block w-full rounded py-2 px-3 bg-blue-600 text-white disabled:bg-slate-600">Afficher les projets</Link>
-        </div>
+        </Card>
     )
 
     return (
-        <div className="max-w-md my-8 mx-auto p-4 rounded shadow-lg">
+        <Card size="md">
             {!!error  &&
                 <Alert type="error">Les informations fournies sont incorrectes</Alert>
             }
@@ -50,7 +51,7 @@ const LoginForm = () => {
                 </fieldset>
                 <button type="submit" className="block w-full text-center rounded py-2 px-3 bg-blue-600 text-white disabled:bg-slate-600" disabled={!validateForm()}>M'identifier</button>
             </form>
-        </div>
+        </Card>
     )
 }
 
