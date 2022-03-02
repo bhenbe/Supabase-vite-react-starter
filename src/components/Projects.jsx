@@ -1,14 +1,14 @@
 import { useEffect, useState } from 'react'
 import { useClient } from 'react-supabase'
-import moment from 'moment'
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom'
+import Card from './atoms/Card'
+import Alert from './atoms/Alert'
+import CardProject from './atoms/CardProject'
 
 const Projects = () => {
     const supabase = useClient()
     const [projects, setProjects] = useState(null)
     const user = supabase.auth.user()
-
-    console.log(user)
 
     useEffect(async () => {
         let { data: project, error } = await supabase
@@ -17,11 +17,11 @@ const Projects = () => {
         setProjects(project)
     }, [])
 
-    if (!!!user?.id) return (
-        <div className="max-w-md my-8 mx-auto p-4 rounded shadow-lg">
-            <div className="block w-full py-2 px-3 mb-4 text-red-700 rounded border border-red-200 bg-red-100">Vous devez vous identifier</div>
+    if (!user?.id) return (
+        <Card size="md">
+            <Alert type="error">Vous devez vous identifier</Alert>
             <Link to="/" className="block w-full text-center rounded py-2 px-3 bg-blue-600 text-white disabled:bg-slate-600">Retour à l'accueil</Link>
-        </div>
+        </Card>
     )
 
     return (
@@ -30,9 +30,8 @@ const Projects = () => {
             <ul>
             {projects?.length > 0 && projects.map(project => {
                 return (
-                    <li key={project.id} className="p-4 mb-2 flex flex-col border rounded shadow">
-                        <strong className="text-blue-600 font-light text-lg">{ project.name }</strong>
-                        <span className="text-sm text-slate-500">{ moment(project.created_at).format('DD/MM/YYYY h:mm:ss') }</span>
+                    <li key={project.id}>
+                        <CardProject name={ project.name } created_at={project.created_at} />
                     </li>
                     )
                 })}

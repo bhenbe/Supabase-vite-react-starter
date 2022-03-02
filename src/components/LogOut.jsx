@@ -1,5 +1,7 @@
 import { useClient, useSignOut } from 'react-supabase'
-import { Navigate } from "react-router-dom";
+import { Navigate } from 'react-router-dom'
+import Card from './atoms/Card'
+import Alert from './atoms/Alert'
 
 const LogOut = () => {
     const supabase = useClient()
@@ -11,28 +13,28 @@ const LogOut = () => {
     }
 
     if (fetching) return (
-        <div className="max-w-md my-8 mx-auto p-4 rounded shadow-lg">
-            <div className="block w-full py-2 px-3 mb-4 text-blue-700 rounded border border-blue-200 bg-blue-100">Déconnexion en cours</div>
-        </div>
+        <Card size="md">
+            <Alert type="info">Déconnexion en cours</Alert>
+        </Card>
     )
 
     if (error) return (
-        <div className="max-w-md my-8 mx-auto p-4 rounded shadow-lg">
-            <div className="block w-full py-2 px-3 mb-4 text-red-700 rounded border border-red-200 bg-red-100">Une erreur est survenue</div>
-        </div>
+        <Card size="md">
+            <Alert type="error">Une erreur est survenue</Alert>
+        </Card>
     )
 
     if (user && user.id !== 0) return (
-        <div className="max-w-md my-8 mx-auto p-4 rounded shadow-lg">
+        <Card size="md">
             <button className="block w-full text-center rounded py-2 px-3 bg-blue-600 text-white disabled:bg-slate-600" onClick={() => onClickSignOut()}>Déconnexion</button> 
-        </div>
+        </Card>
     )
 
     return (
-        <div className="max-w-md my-8 mx-auto p-4 rounded shadow-lg">
-            <div className="block w-full py-2 px-3 mb-4 text-green-700 rounded border border-green-200 bg-green-100">Vous êtes déconnecté !</div>
+        <Card size="md">
+            <Alert type="success">Vous êtes déconnecté !</Alert>
             <Navigate to="/" /> 
-        </div>
+        </Card>
     )
 }
 

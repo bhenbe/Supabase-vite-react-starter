@@ -1,6 +1,9 @@
-import { useState } from 'react';
+import { useState }  from 'react';
 import { useSignUp } from 'react-supabase'
 //https://react-supabase.vercel.app/documentation/auth/use-signup
+import Card          from './atoms/Card'
+import Alert         from './atoms/Alert'
+import FormInput     from './atoms/FormInput'
 
 const RegisterForm = () => {
     const [email, setEmail] = useState("");
@@ -20,34 +23,38 @@ const RegisterForm = () => {
     }
 
     if (fetching) return (
-        <div className="max-w-md my-8 mx-auto p-4 rounded shadow-lg">
-            <div className="block w-full py-2 px-3 mb-4 text-blue-700 rounded border border-blue-200 bg-blue-100">Création de compte en cours</div>
-        </div>
+        <Card size="md">
+            <Alert type="info">Création de compte en cours</Alert>
+        </Card>
     )
 
     if (user) return (
-        <div className="max-w-md my-8 mx-auto p-4 rounded shadow-lg">
-            <div className="block w-full py-2 px-3 mb-4 text-green-700 rounded border border-green-200 bg-green-100">Votre compte a bien été créé !</div>
-        </div>
+        <Card size="md">
+            <Alert type="success">Votre compte a bien été créé !</Alert>
+        </Card>
     )
 
     return (
-        <div className="max-w-md my-8 mx-auto p-4 rounded shadow-lg">
-            {!!error  &&
-                <div className="block w-full py-2 px-3 mb-4 text-red-700 rounded border border-red-200 bg-red-100">Les informations fournies sont incorrectes</div>
+        <Card size="md">
+            {!error  &&
+                <Alert type="error">Les informations fournies sont incorrectes</Alert>
             }
             <form onSubmit={handleSubmit}>
-                <fieldset className="flex flex-col">
-                    <label htmlFor="register-email">Adresse e-mail</label>
-                    <input type="email" name="register-email" className="block w-full py-2 px-3 text-gray-700 mb-3 leading-tight rounded border bg-white" autoComplete="false" value={email} onChange={(e) => setEmail(e.target.value)} />
-                </fieldset>
-                <fieldset className="flex flex-col">
-                    <label htmlFor="register-password">Mot de passe </label>
-                    <input type="password" name="register-password" className="block w-full py-2 px-3 text-gray-700 mb-3 leading-tight rounded border bg-white" autoComplete="false" value={password} onChange={(e) => setPassword(e.target.value)} />
-                </fieldset>
+                <FormInput 
+                    name="register-email"
+                    label="Adresse e-mail"
+                    type="email"
+                    value={email} 
+                    onchange={(e) => setEmail(e.target.value)} />
+                <FormInput
+                    name="register-password"
+                    label="Mot de passe"
+                    type="password" 
+                    value={password} 
+                    onchange={(e) => setPassword(e.target.value)} />
                 <button type="submit" className="block w-full text-center rounded py-2 px-3 bg-blue-600 text-white disabled:bg-slate-600" disabled={!validateForm()}>Créer mon compte</button>
             </form>
-        </div>
+        </Card>
     )
 }
 
