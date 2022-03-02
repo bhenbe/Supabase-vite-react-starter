@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useSignIn } from 'react-supabase'
 //https://react-supabase.vercel.app/documentation/auth/use-signin
-import { Link } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 
 const LoginForm = () => {
     const [email, setEmail] = useState("");
@@ -29,7 +29,7 @@ const LoginForm = () => {
     if (user) return (
         <div className="max-w-md my-8 mx-auto p-4 rounded shadow-lg">
             <div className="block w-full py-2 px-3 mb-4 text-green-700 rounded border border-green-200 bg-green-100">Connecté !</div>
-            <Link to="projects" className="block w-full rounded py-2 px-3 bg-blue-600 text-white disabled:bg-slate-600">Afficher les projets</Link>
+            <Navigate to="/projects" />
         </div>
     )
 

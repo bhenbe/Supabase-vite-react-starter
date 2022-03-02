@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useSignUp } from 'react-supabase'
 //https://react-supabase.vercel.app/documentation/auth/use-signup
 
-const LoginForm = () => {
+const RegisterForm = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [{ error, fetching, session, user }, signUp] = useSignUp()
@@ -51,4 +51,4 @@ const LoginForm = () => {
     )
 }
 
-export default LoginForm
+export default RegisterForm
